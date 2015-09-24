@@ -6,4 +6,3 @@ var AppRegistry = React.AppRegistry;
 var Root = require('./Root');
 
 AppRegistry.registerComponent('Root', () => Root);
-
