@@ -162,6 +162,8 @@
 		68C0D6EA1BB3ADDA007A6FFF /* CDSNSView.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C0D65D1BB3ADDA007A6FFF /* CDSNSView.m */; };
 		68C0D6EB1BB3ADDA007A6FFF /* CDTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C0D65F1BB3ADDA007A6FFF /* CDTextField.m */; };
 		68C0D73D1BB3D687007A6FFF /* main_leanchat.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C0D73C1BB3D687007A6FFF /* main_leanchat.m */; };
+		68C0D7421BB3F9FE007A6FFF /* ReactViewWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C0D7411BB3F9FE007A6FFF /* ReactViewWrapper.m */; };
+		68C0D7451BB3FF56007A6FFF /* SpringBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 68C0D7441BB3FF56007A6FFF /* SpringBoard.m */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		A797834B8CAAD691A1C26BD4 /* libPods-AwesomeProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 375F033B6929C3810D1CC22C /* libPods-AwesomeProject.a */; };
 /* End PBXBuildFile section */
@@ -458,6 +460,10 @@
 		68C0D65E1BB3ADDA007A6FFF /* CDTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDTextField.h; sourceTree = "<group>"; };
 		68C0D65F1BB3ADDA007A6FFF /* CDTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDTextField.m; sourceTree = "<group>"; };
 		68C0D73C1BB3D687007A6FFF /* main_leanchat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main_leanchat.m; sourceTree = "<group>"; };
+		68C0D7401BB3F92F007A6FFF /* ReactViewWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReactViewWrapper.h; path = AwesomeProject/ReactViewWrapper.h; sourceTree = "<group>"; };
+		68C0D7411BB3F9FE007A6FFF /* ReactViewWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReactViewWrapper.m; path = AwesomeProject/ReactViewWrapper.m; sourceTree = "<group>"; };
+		68C0D7431BB3FEF7007A6FFF /* SpringBoard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SpringBoard.h; path = AwesomeProject/SpringBoard.h; sourceTree = "<group>"; };
+		68C0D7441BB3FF56007A6FFF /* SpringBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpringBoard.m; path = AwesomeProject/SpringBoard.m; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		B2465566877ED921032C2325 /* Pods-AwesomeProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeProject/Pods-AwesomeProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -576,6 +582,10 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				68C0D7401BB3F92F007A6FFF /* ReactViewWrapper.h */,
+				68C0D7411BB3F9FE007A6FFF /* ReactViewWrapper.m */,
+				68C0D7431BB3FEF7007A6FFF /* SpringBoard.h */,
+				68C0D7441BB3FF56007A6FFF /* SpringBoard.m */,
 			);
 			name = AwesomeProject;
 			sourceTree = "<group>";
@@ -1381,6 +1391,7 @@
 				68C0D6651BB3ADDA007A6FFF /* CDWebViewVC.m in Sources */,
 				68C0D6681BB3ADDA007A6FFF /* CDConvsVC.m in Sources */,
 				68C0D6721BB3ADDA007A6FFF /* CDLoginVC.m in Sources */,
+				68C0D7451BB3FF56007A6FFF /* SpringBoard.m in Sources */,
 				68C0D67B1BB3ADDA007A6FFF /* CDSettingVC.m in Sources */,
 				68C0D6831BB3ADDA007A6FFF /* CDUtils.m in Sources */,
 				68C0D6E91BB3ADDA007A6FFF /* CDResizableButton.m in Sources */,
@@ -1390,6 +1401,7 @@
 				68C0D6791BB3ADDA007A6FFF /* CDProfileNameVC.m in Sources */,
 				68C0D6771BB3ADDA007A6FFF /* CDFriendListVC.m in Sources */,
 				68C0D6E71BB3ADDA007A6FFF /* CDPopMenuItem.m in Sources */,
+				68C0D7421BB3F9FE007A6FFF /* ReactViewWrapper.m in Sources */,
 				68C0D6641BB3ADDA007A6FFF /* CDBaseVC.m in Sources */,
 				68C0D66A1BB3ADDA007A6FFF /* CDConvDetailVC.m in Sources */,
 				68C0D66F1BB3ADDA007A6FFF /* CDSelectMemberVC.m in Sources */,

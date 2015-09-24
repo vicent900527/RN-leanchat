@@ -40,15 +40,25 @@
     [AVOSCloudSNS setupPlatform:AVOSCloudSNSQQ withAppKey:QQAppId andAppSecret:QQAppKey andRedirectURI:nil];
     [AVOSCloudSNS setupPlatform:AVOSCloudSNSSinaWeibo withAppKey:WeiboAppId andAppSecret:WeiboAppKey andRedirectURI:@"http://wanpaiapp.com/oauth/callback/sina"];
     [AVOSCloudSNS setupPlatform:AVOSCloudSNSWeiXin withAppKey:WeChatAppId andAppSecret:WeChatSecretKey andRedirectURI:nil];
-    
+  
+//  UIButton *backButton = [UIButton buttonWithType: UIButtonTypeSystem];
+//  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+  self.navigationController.navigationBarHidden = false;
+//  [backButton addTarget:self action:@selector(moveBack) forControlEvents:UIControlEventTouchUpInside];
+  
     self.usernameField.placeholder = @"用户名或手机号";
     [self.view addSubview:self.loginButton];
     [self.view addSubview:self.registerButton];
     [self.view addSubview:self.forgotPasswordButton];
     [self.view addSubview:self.snsView];
-    
+//    UINavigationController *controller = (UINavigationController*) [[UIApplication sharedApplication] keyWindow].rootViewController;
+  
 //    [self performSelector:@selector(toRegister:) withObject:nil afterDelay:0];
 }
+
+//- (void) moveBack {
+//  
+//}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

@@ -1,42 +1,18 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
 'use strict';
 
 var React = require('react-native');
+
 var {
   AppRegistry,
   StyleSheet,
   Text,
   View,
   TouchableHighlight,
-  Navigator
+  Navigator,
+  NativeModules
 } = React;
 
-/*
-var AwesomeProject = React.createClass({
-  render: function() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-        <Text style={styles.instructions}>
-            From: Javis Young
-        </Text>
-      </View>
-    );
-  }
-});
-*/
+var SpringBoard = NativeModules.SpringBoard;
 
 var Button = React.createClass({
     handlePress: function() {
@@ -57,7 +33,7 @@ var TestView = React.createClass({
     handleClick: function() {
         var index = this.props.index + 1;
         if (index >= 4) {
-            this.props.navigator.push({name: "IM"});
+            SpringBoard.gotoIM(function() {});
         } else {
             this.props.navigator.push({name: "Scene#" + index, index: index});
         }
@@ -80,6 +56,31 @@ var TestView = React.createClass({
     }
 });
 
+var LaunchView = React.createClass({
+    gotoOther: function() {
+        var index = 1;
+        this.props.navigator.push({name: "Scene#" + index, index: index});
+    },
+
+    gotoIM: function() {
+        console.log('goto IM');
+        SpringBoard.gotoIM(function() {
+            console.log('goto IM', 'done!');
+        });
+    },
+
+    render: function() {
+        return (
+            <View style={styles.container}>
+                <View style={styles.row}>
+                    <Button onClick={this.gotoOther}>Other</Button>
+                    <Button onClick={this.gotoIM}>IM</Button>
+                </View>
+            </View>
+        );   
+    }
+});
+
 var IMView = React.createClass({
     render: function() {
         return (
@@ -95,7 +96,7 @@ var AwesomeProject = React.createClass({
     return (
       <Navigator 
         ref="navigator"
-        initialRoute={{name: 'Scene#0', index: 0}}
+        initialRoute={{name: 'launch', index: 0}}
         renderScene={this.renderScene}
       />
     );
@@ -103,6 +104,10 @@ var AwesomeProject = React.createClass({
 
   renderScene: function(route, navigator) {
     console.log(route);
+
+    if (route.name === 'launch') {
+        return <LaunchView navigator={navigator}/>
+    }
 
     if (route.name === 'IM') {
         return <IMView/>
