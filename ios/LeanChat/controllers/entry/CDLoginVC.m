@@ -44,6 +44,7 @@
 //  UIButton *backButton = [UIButton buttonWithType: UIButtonTypeSystem];
 //  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
   self.navigationController.navigationBarHidden = false;
+  self.navigationController.navigationBar.backItem.title = @"返回";
 //  [backButton addTarget:self action:@selector(moveBack) forControlEvents:UIControlEventTouchUpInside];
   
     self.usernameField.placeholder = @"用户名或手机号";
