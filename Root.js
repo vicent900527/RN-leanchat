@@ -34,37 +34,78 @@ var Button = React.createClass({
 var ListViewWrapper = React.createClass({
     
     getInitialState: function() {
-      var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+      this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
       return {
-        dataSource: ds.cloneWithRows([{
-            id: '1',
-            name: 'item#1'
-        }, {
-            id: '2',
-            name: 'item#2'
-        }]),
+        dataSource: this.ds.cloneWithRows([])
       };
     },
 
-    handleItemClick: function(id) {
+    componentDidMount: function() {
+        this.loadItems();
+    },
+
+    handleItemClick: function(data) {
         this.props.navigator.push({
             name: "item",
-            id: id
+            id: data.id,
+            content: data.content
         });
     },
 
     renderRow: function(rowData) {
         return (
-            <Button onClick={this.handleItemClick.bind(this, rowData.id)}>{rowData.name}</Button>
+            <Button onClick={this.handleItemClick.bind(this, rowData)}>{rowData.content}#{rowData.id}</Button>
         );
+    },
+
+    loadItems: function() {
+        fetch("https://api.leancloud.cn/1.1/classes/Post", {
+            headers: {
+                'Content-Type': 'application/json',
+                'X-LC-Id': 'g1ivNRWAeYITzaQ5txkjG8IP',
+                'X-LC-Key': 'xk1Sow3X9lkfvC4p2Nlflpx2',
+            }
+        }).then(function(response) {
+            var data = JSON.parse(response._bodyInit);
+            var dataSource = this.ds.cloneWithRows(data.results);
+            this.setState({
+                dataSource: dataSource
+            });
+        }.bind(this), function() {
+            console.error("fail");
+        });
+    },
+
+    addItem: function() {
+        fetch("https://api.leancloud.cn/1.1/classes/Post", {
+            method: "POST",
+            headers: {
+                'X-LC-Id': 'g1ivNRWAeYITzaQ5txkjG8IP',
+                'X-LC-Key': 'xk1Sow3X9lkfvC4p2Nlflpx2',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                content: "hello",
+                id: Math.ceil(Math.random() * 10000)
+            })
+        }).then(function() {
+            this.loadItems();
+        }.bind(this), function() {
+            console.error("fail");
+        });
     },
     
     render: function() {
       return (
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow}
-        />
+        <View style={styles.container}>
+            <View style={styles.list}>
+                <ListView
+                  dataSource={this.state.dataSource}
+                  renderRow={this.renderRow}
+                />
+            </View>
+            <Button onClick={this.addItem} style={styles.toolbar}>添加</Button>
+        </View>
       );
     }
 });
@@ -145,6 +186,7 @@ var LaunchView = React.createClass({
       <View style={[styles.tabContent, {backgroundColor: color}]}>
         <Text style={styles.tabText}>{pageText}</Text>
         <Text style={styles.tabText}>{num} re-renders of the {pageText}</Text>
+        <Button style={styles.button} onCllik={this.test}>test leancloud</Button>
       </View>
     );
   },
@@ -155,26 +197,26 @@ var LaunchView = React.createClass({
 
   render: function() {
     return (
-      <TabBarIOS
-        tintColor="white"
-        barTintColor="darkslateblue">
-        <TabBarIOS.Item
-          title="Blue Tab"
-          icon={{uri: base64Icon, scale: 3}}
-          selected={this.state.selectedTab === 'blueTab'}
-          onPress={() => {
-            this.setState({
-              selectedTab: 'blueTab',
-            });
-          }}>
-          {this._renderList()}
-        </TabBarIOS.Item>
-        <TabBarIOS.Item
-          systemIcon="more"
-          selected={this.state.selectedTab === 'greenTab'}
-          onPress={() => {
-            SpringBoard.gotoIM(function(){});
-          }}>
+    <TabBarIOS
+      tintColor="white"
+      barTintColor="darkslateblue">
+      <TabBarIOS.Item
+        title="Blue Tab"
+        icon={{uri: base64Icon, scale: 3}}
+        selected={this.state.selectedTab === 'blueTab'}
+        onPress={() => {
+          this.setState({
+            selectedTab: 'blueTab',
+          });
+        }}>
+        {this._renderList()}
+      </TabBarIOS.Item>
+      <TabBarIOS.Item
+        systemIcon="more"
+        selected={this.state.selectedTab === 'greenTab'}
+        onPress={() => {
+          SpringBoard.gotoIM(function(){});
+        }}>
           {this._renderContent('#21551C', 'Green Tab', this.state.presses)}
         </TabBarIOS.Item>
       </TabBarIOS>
@@ -237,6 +279,13 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  list: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+
+  },
   row: {
     flex: 1,
     flexDirection: 'row',
@@ -245,6 +294,11 @@ var styles = StyleSheet.create({
     padding: 12,
     backgroundColor: '#F5FCFF',
 
+  },
+  toolbar: {
+    padding: 12,
+    backgroundColor: '#F5FCFF',
+    height: 50
   },
   welcome: {
     fontSize: 20,
